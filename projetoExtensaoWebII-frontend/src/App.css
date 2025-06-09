@@ -1,8 +1,42 @@
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.main-container {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  padding: 36px 0 20px 0;
   text-align: center;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.13);
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -11,9 +45,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +58,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -33,10 +70,169 @@
   }
 }
 
-.card {
-  padding: 2em;
+.header h1 {
+  margin: 0 0 8px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
-.read-the-docs {
+.logo-title {
+  margin: 0 0 12px 0;
+  font-size: 2.7rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+}
+
+.icon-heart {
+  font-size: 2.3rem;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 6px #fff6);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.18rem;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 10px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
+}
+
+.nav-list li a:hover {
+  background: #fff;
+  color: #1976d2;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
+}
+
+.welcome-section {
+  margin: 0;
+  max-width: 540px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(25, 118, 210, 0.13);
+  padding: 56px 38px 44px 38px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.welcome-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #1976d2;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.welcome-section .desc {
+  font-size: 1.18rem;
+  color: #444;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.cta-btn {
+  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 1.13rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+  border: none;
+  outline: none;
+  display: inline-block;
+}
+
+.cta-btn:hover {
+  background: linear-gradient(90deg, #1565c0 60%, #1976d2 100%);
+  color: #ffeb3b;
+  box-shadow: 0 6px 24px rgba(25, 118, 210, 0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.cta-btn.secondary {
+  background: #fff;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  font-weight: 700;
+}
+
+.cta-btn.secondary:hover {
+  background: #e3f0ff;
+  color: #1565c0;
+  border-color: #1565c0;
+}
+
+.footer {
+  margin-top: 32px;
+  padding: 36px 0 20px 0;
+  background: none;
   color: #888;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  width: 100vw;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .welcome-section {
+    padding: 32px 8px 20px 8px;
+    min-width: 0;
+    width: 98vw;
+  }
+
+  .nav-list {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .logo-title {
+    font-size: 1.5rem;
+  }
+
+  .header {
+    padding: 22px 0 10px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome-section {
+    padding: 12px 2px 10px 2px;
+    width: 100vw;
+  }
 }

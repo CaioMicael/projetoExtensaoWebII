@@ -1,0 +1,100 @@
+.page-container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+    padding-top: 48px;
+}
+
+.page-title {
+    font-size: 2.1rem;
+    color: #1976d2;
+    font-weight: 800;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.orgs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.org-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(25, 118, 210, 0.10);
+    padding: 32px 28px 24px 28px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.org-card:hover {
+    box-shadow: 0 8px 32px rgba(25, 118, 210, 0.18);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.org-card h3 {
+    color: #1976d2;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.org-card .desc {
+    color: #444;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+}
+
+.org-info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.badge {
+    padding: 4px 14px;
+    border-radius: 16px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #fff;
+    background: #1976d2;
+    margin-right: 8px;
+}
+
+.badge.ong {
+    background: #43a047;
+}
+
+.badge.gov {
+    background: #1976d2;
+}
+
+.city {
+    color: #1976d2;
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .orgs-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .org-card {
+        width: 90vw;
+        max-width: 400px;
+    }
+}

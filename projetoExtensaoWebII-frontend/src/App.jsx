@@ -1,85 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Box, Button, TextField, Card, CardContent, CardActions, Grid, CircularProgress } from '@mui/material';
-import { motion } from 'framer-motion';
-import api from './services/api';
+import React from 'react';
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [submitting, setSubmitting] = useState(false);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const response = await api.get('/products');
-      setProducts(response.data);
-    } catch {
-      alert('Erro ao buscar produtos!');
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const handleAddProduct = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      await api.post('/products', { name, price });
-      setName('');
-      setPrice('');
-      fetchProducts();
-    } catch {
-      alert('Erro ao adicionar produto!');
-    }
-    setSubmitting(false);
-  };
-
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <motion.div initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-        <Typography variant="h3" gutterBottom color="primary" fontWeight={700} align="center">
-          Catálogo de Produtos
+    <div className="main-container">
+      <header className="header gradient-bg">
+        <Typography variant="h3" className="logo-title">
+          <span className="icon-heart">❤️</span> Sistema de Doações
         </Typography>
-      </motion.div>
-      <Box component={motion.div} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.7 }} mb={4}>
-        <form onSubmit={handleAddProduct} style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <TextField label="Nome" value={name} onChange={e => setName(e.target.value)} required />
-          <TextField label="Preço" value={price} onChange={e => setPrice(e.target.value)} required type="number" inputProps={{ step: '0.01' }} />
-          <Button type="submit" variant="contained" color="primary" disabled={submitting}>
-            {submitting ? <CircularProgress size={24} /> : 'Adicionar'}
-          </Button>
-        </form>
-      </Box>
-      {loading ? (
-        <Box display="flex" justifyContent="center" alignItems="center" minHeight={200}>
-          <CircularProgress />
-        </Box>
-      ) : (
-        <Grid container spacing={3} component={motion.div} initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}>
-          {products.map((product) => (
-            <Grid item xs={12} sm={6} md={4} key={product.id}>
-              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
-                <Card elevation={4}>
-                  <CardContent>
-                    <Typography variant="h6" fontWeight={600}>{product.name}</Typography>
-                    <Typography color="text.secondary">Preço: R$ {Number(product.price).toFixed(2)}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    {/* Botão de remover pode ser adicionado aqui futuramente */}
-                  </CardActions>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
-      )}
-    </Container>
+        <nav>
+          <ul className="nav-list">
+            <li><Link to="/campanhas">Campanhas</Link></li>
+            <li><Link to="/organizacoes">Organizações</Link></li>
+            <li><Link to="/dashboard">Painel do Usuário</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Cadastro</Link></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section className="welcome-section">
+          <h2>Bem-vindo ao Sistema de Doações!</h2>
+          <p className="desc">Conectando pessoas solidárias a ONGs e órgãos públicos em situações de emergência e no dia a dia.</p>
+          <div className="cta-buttons">
+            <Link to="/campanhas" className="cta-btn">Ver Campanhas</Link>
+            <Link to="/organizacoes" className="cta-btn secondary">Conhecer Organizações</Link>
+          </div>
+        </section>
+      </main>
+      <footer className="footer">
+        <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 4 }}>
+          {'© 2025 Sistema de Doações. Todos os direitos reservados.'}
+        </Typography>
+      </footer>
+    </div>
   );
 }
 
