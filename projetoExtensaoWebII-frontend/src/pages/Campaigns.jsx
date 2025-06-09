@@ -2,7 +2,6 @@ import React from 'react';
 import './Campaigns.css';
 
 function Campaigns() {
-  // Exemplo de campanhas fictícias
   const campaigns = [
     {
       id: 1,

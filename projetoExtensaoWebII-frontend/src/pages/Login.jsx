@@ -11,10 +11,8 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    // Aqui você faria a requisição para o backend
     setTimeout(() => {
       setLoading(false);
-      // Simulação de erro
       setError('Email ou senha inválidos.');
     }, 1200);
   };

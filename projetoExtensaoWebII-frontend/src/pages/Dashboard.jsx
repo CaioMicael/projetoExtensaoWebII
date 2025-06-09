@@ -2,7 +2,6 @@ import React from 'react';
 import './Dashboard.css';
 
 function Dashboard() {
-  // Exemplo de dados fictícios do usuário
   const user = {
     name: 'João da Silva',
     email: 'joao@email.com',

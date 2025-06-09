@@ -14,7 +14,6 @@ function Register() {
     setLoading(true);
     setError('');
     setSuccess(false);
-    // Aqui você faria a requisição para o backend
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);

@@ -2,7 +2,6 @@ import React from 'react';
 import './Organizations.css';
 
 function Organizations() {
-  // Exemplo de organizações fictícias
   const orgs = [
     {
       id: 1,
@@ -36,7 +35,7 @@ function Organizations() {
             <h3>{o.name}</h3>
             <p className="desc">{o.description}</p>
             <div className="org-info">
-              <span className="badge {o.type === 'ONG' ? 'ong' : 'gov'}">{o.type}</span>
+              <span className={`badge ${o.type === 'ONG' ? 'ong' : 'gov'}`}>{o.type}</span>
               <span className="city">{o.city}</span>
             </div>
           </div>
