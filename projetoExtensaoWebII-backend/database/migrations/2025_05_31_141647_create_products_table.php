@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 8, 2);
+            $table->foreignId('user_id')->constrained('users'); // Relaciona produto ao usuário
             $table->timestamps();
         });
     }

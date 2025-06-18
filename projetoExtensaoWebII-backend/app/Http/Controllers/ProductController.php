@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 /**
  * @OA\Info(
- *     title="API projeto extensão Web II",	
+ *     title="API projeto extensão Web II",
  *     version="1.0",
  *     description="Documentação da API do projeto de extensão Web II",
  * )
@@ -55,9 +55,9 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
         ]);
-        
+        $validated['user_id'] = $request->user()->id; // Associa ao usuário autenticado
         $product = Product::create($validated);
-        
+
         return response()->json($product, 201);
     }
 
@@ -120,9 +120,9 @@ class ProductController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'price' => 'sometimes|required|numeric|min:0',
         ]);
-        
+
         $product->update($validated);
-        
+
         return response()->json($product);
     }
 

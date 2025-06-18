@@ -17,7 +17,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        // You may need to add other fields here based on your database schema
+        'user_id', // Adicionado para associar produto ao usuário
     ];
 
     /**
