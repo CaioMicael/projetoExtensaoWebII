@@ -6,6 +6,389 @@
         "version": "1.0"
     },
     "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Autenticação"
+                ],
+                "summary": "Registrar um novo usuário",
+                "description": "Cria um novo usuário e retorna um token de acesso",
+                "operationId": "register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Nome do Usuário"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "usuario@exemplo.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "senha123"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "estabelecimento",
+                                            "cliente"
+                                        ],
+                                        "example": "cliente"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cadastro realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erros de validação"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticação"
+                ],
+                "summary": "Login de usuário",
+                "description": "Realiza o login do usuário e retorna um token de acesso",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "usuario@exemplo.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "senha123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "type": "object"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Autenticação"
+                ],
+                "summary": "Logout de usuário",
+                "description": "Realiza o logout do usuário autenticado",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Logout realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Logout realizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/donations": {
+            "get": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Listar todas as doações",
+                "operationId": "efd463fc838a5d0b3edcc89ecc8374ac",
+                "responses": {
+                    "200": {
+                        "description": "Lista de doações"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Criar uma nova doação",
+                "operationId": "a83d56537f533c01a1daf0abefdec913",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "organization",
+                                    "goal_amount"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ajuda para Enchentes"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Campanha para ajudar vítimas de enchentes"
+                                    },
+                                    "organization": {
+                                        "type": "string",
+                                        "example": "Cruz Vermelha"
+                                    },
+                                    "goal_amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 10000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Doação criada com sucesso"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/donations/{id}": {
+            "get": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Obter uma doação específica",
+                "operationId": "d70f7a1ae033692540b40f026aa5740e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes da doação"
+                    },
+                    "404": {
+                        "description": "Doação não encontrada"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Atualizar uma doação",
+                "operationId": "34b621cd5de718d266cdb93e0c5a0294",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ajuda para Enchentes"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Campanha para ajudar vítimas de enchentes"
+                                    },
+                                    "organization": {
+                                        "type": "string",
+                                        "example": "Cruz Vermelha"
+                                    },
+                                    "goal_amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 10000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Doação atualizada com sucesso"
+                    },
+                    "404": {
+                        "description": "Doação não encontrada"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Excluir uma doação",
+                "operationId": "ff34df7029ed4a4fc68e6a59674f9621",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Doação excluída com sucesso"
+                    },
+                    "404": {
+                        "description": "Doação não encontrada"
+                    }
+                }
+            }
+        },
+        "/api/donations/{id}/contribute": {
+            "post": {
+                "tags": [
+                    "Doações"
+                ],
+                "summary": "Contribuir para uma doação",
+                "operationId": "917f85642d481da99b2c689677f02de0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "amount"
+                                ],
+                                "properties": {
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 100
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Contribuição realizada com sucesso"
+                    },
+                    "404": {
+                        "description": "Doação não encontrada"
+                    },
+                    "422": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
         "/api/products": {
             "get": {
                 "summary": "Listar produtos",
@@ -145,5 +528,15 @@
                 }
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Autenticação",
+            "description": "API para autenticação de usuários"
+        },
+        {
+            "name": "Doações",
+            "description": "API para gerenciamento de doações"
+        }
+    ]
 }

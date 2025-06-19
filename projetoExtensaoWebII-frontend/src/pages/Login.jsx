@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import './Login.css';
 
 function Login() {
@@ -6,15 +8,32 @@ function Login() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
+  
+  // Verificar se o usuário já está autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+  }, [navigate, isAuthenticated]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setTimeout(() => {
+    
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      console.error('Erro de login:', err);
+      setError(
+        err.response?.data?.message || 
+        'Erro ao fazer login. Por favor, verifique suas credenciais.'
+      );
       setLoading(false);
-      setError('Email ou senha inválidos.');
-    }, 1200);
+    }
   };
 
   return (

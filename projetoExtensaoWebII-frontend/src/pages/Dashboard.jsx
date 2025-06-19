@@ -1,46 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import ProductService from '../services/productService';
 import './Dashboard.css';
 
 function Dashboard() {
-  const user = {
-    name: 'João da Silva',
-    email: 'joao@email.com',
-    totalDonated: 'R$ 1.200',
-    donations: [
-      { id: 1, campaign: 'Ajuda para Enchentes RS', value: 'R$ 200', date: '01/06/2025' },
-      { id: 2, campaign: 'Doe para a APAE', value: 'R$ 500', date: '15/05/2025' },
-      { id: 3, campaign: 'Lar das Meninas - Reforma', value: 'R$ 500', date: '10/05/2025' },
-    ],
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await ProductService.getAllProducts();
+        setProducts(data);
+      } catch (err) {
+        console.error('Erro ao buscar produtos:', err);
+        setError('Não foi possível carregar os produtos.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
   };
 
   return (
     <div className="dashboard-container">
-      <h2 className="dashboard-title">Painel do Usuário</h2>
-      <div className="user-card">
-        <h3>{user.name}</h3>
-        <div className="user-info">{user.email}</div>
-        <div className="user-total">Total doado: <b>{user.totalDonated}</b></div>
+      <div className="dashboard-header">
+        <h2 className="dashboard-title">Painel do Usuário</h2>
+        <button className="logout-button" onClick={handleLogout}>Sair</button>
       </div>
-      <div className="donations-section">
-        <h4>Minhas Doações</h4>
-        <table className="donations-table">
-          <thead>
-            <tr>
-              <th>Campanha</th>
-              <th>Valor</th>
-              <th>Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user.donations.map((d) => (
-              <tr key={d.id}>
-                <td>{d.campaign}</td>
-                <td>{d.value}</td>
-                <td>{d.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      
+      {user && (
+        <div className="user-card">
+          <h3>{user.name}</h3>
+          <div className="user-info">{user.email}</div>
+          <div className="user-type">Tipo: <b>{user.type === 'cliente' ? 'Cliente' : 'Estabelecimento'}</b></div>
+        </div>
+      )}
+      
+      <div className="products-section">
+        <h4>Produtos Disponíveis</h4>
+        
+        {loading ? (
+          <div className="loading">Carregando produtos...</div>
+        ) : error ? (
+          <div className="error">{error}</div>
+        ) : (
+          <div className="products-grid">
+            {products.length > 0 ? products.map((product) => (
+              <div key={product.id} className="product-card">
+                <h3>{product.name}</h3>
+                <p className="product-price">R$ {product.price.toFixed(2)}</p>
+              </div>            )) : (
+              <p>Nenhum produto disponível.</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

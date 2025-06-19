@@ -9,9 +9,9 @@ function App() {
       <header className="header gradient-bg">
         <Typography variant="h3" className="logo-title">
           <span className="icon-heart">❤️</span> Sistema de Doações
-        </Typography>
-        <nav>
+        </Typography>        <nav>
           <ul className="nav-list">
+            <li><Link to="/doacoes">Doações</Link></li>
             <li><Link to="/campanhas">Campanhas</Link></li>
             <li><Link to="/organizacoes">Organizações</Link></li>
             <li><Link to="/dashboard">Painel do Usuário</Link></li>
@@ -23,8 +23,8 @@ function App() {
       <main>
         <section className="welcome-section">
           <h2>Bem-vindo ao Sistema de Doações!</h2>
-          <p className="desc">Conectando pessoas solidárias a ONGs e órgãos públicos em situações de emergência e no dia a dia.</p>
-          <div className="cta-buttons">
+          <p className="desc">Conectando pessoas solidárias a ONGs e órgãos públicos em situações de emergência e no dia a dia.</p>          <div className="cta-buttons">
+            <Link to="/doacoes" className="cta-btn">Ver Doações</Link>
             <Link to="/campanhas" className="cta-btn">Ver Campanhas</Link>
             <Link to="/organizacoes" className="cta-btn secondary">Conhecer Organizações</Link>
           </div>
