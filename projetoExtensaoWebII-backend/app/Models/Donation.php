@@ -15,7 +15,8 @@ class Donation extends Model
         'organization',
         'goal_amount',
         'raised_amount',
-        'is_active'
+        'is_active',
+        'user_id'
     ];
 
     protected $casts = [
@@ -24,7 +25,6 @@ class Donation extends Model
         'is_active' => 'boolean'
     ];
 
-    // Método para calcular a porcentagem arrecadada
     public function getProgressPercentageAttribute()
     {
         if ($this->goal_amount <= 0) {
@@ -33,9 +33,13 @@ class Donation extends Model
         return round(($this->raised_amount / $this->goal_amount) * 100, 2);
     }
 
-    // Método para verificar se a meta foi atingida
     public function isGoalReached()
     {
         return $this->raised_amount >= $this->goal_amount;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

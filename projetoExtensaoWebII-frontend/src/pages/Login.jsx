@@ -10,11 +10,9 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
-  
-  // Verificar se o usuário já está autenticado
-  useEffect(() => {
+    useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      navigate('/');
     }
   }, [navigate, isAuthenticated]);
 

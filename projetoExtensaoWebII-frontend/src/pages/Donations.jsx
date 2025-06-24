@@ -10,10 +10,8 @@ function Donations() {
   const [showForm, setShowForm] = useState(false);
   const [editingDonation, setEditingDonation] = useState(null);
   const [contributionAmount, setContributionAmount] = useState('');
-  const [contributingTo, setContributingTo] = useState(null);
-  const { user, isAuthenticated } = useAuth();
+  const [contributingTo, setContributingTo] = useState(null);  const { user, isAuthenticated } = useAuth();
 
-  // Formulário para nova doação
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -212,11 +210,11 @@ function Donations() {
             <h3>{donation.name}</h3>
             <p className="donation-organization">Por: {donation.organization}</p>
             <p className="donation-description">{donation.description}</p>
-              <div className="donation-progress">
-              <div className="progress-info">
+              <div className="donation-progress">              <div className="progress-info">
                 <span>R$ {parseFloat(donation.raised_amount || 0).toFixed(2)}</span>
                 <span>Meta: R$ {parseFloat(donation.goal_amount || 0).toFixed(2)}</span>
-              </div>              <div className="progress-bar">
+              </div>
+              <div className="progress-bar">
                 <div 
                   className="progress-fill"
                   style={{ width: `${calculateProgress(donation.raised_amount, donation.goal_amount)}%` }}

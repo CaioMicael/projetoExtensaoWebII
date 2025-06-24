@@ -7,17 +7,14 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState('cliente'); // Adicionar tipo de usuário
+  const [type, setType] = useState('cliente');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-  const { register, isAuthenticated } = useAuth();
-
-  // Verificar se o usuário já está autenticado
-  useEffect(() => {
+  const { register, isAuthenticated } = useAuth();  useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      navigate('/');
     }
   }, [navigate, isAuthenticated]);
 
@@ -28,16 +25,12 @@ function Register() {
     setSuccess(false);
     
     try {
-      await register({ name, email, password, type });
-      setSuccess(true);
-      // Redireciona para o dashboard após 1.5 segundos
+      await register({ name, email, password, type });      setSuccess(true);
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/');
       }, 1500);
     } catch (err) {
-      console.error('Erro no registro:', err);
-      if (err.response?.data?.errors) {
-        // Formatar erros de validação
+      console.error('Erro no registro:', err);      if (err.response?.data?.errors) {
         const validationErrors = Object.values(err.response.data.errors).flat().join(', ');
         setError(`Erro no cadastro: ${validationErrors}`);
       } else {
@@ -50,7 +43,8 @@ function Register() {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h2>Cadastro</h2>        <label>Nome</label>
+        <h2>Cadastro</h2>
+        <label>Nome</label>
         <input type="text" value={name} onChange={e => setName(e.target.value)} required />
         <label>Email</label>
         <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />

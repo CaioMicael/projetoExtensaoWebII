@@ -1,0 +1,19 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.main-content.no-padding {
+  padding: 0;
+}
+
+.main-content.full-height {
+  min-height: calc(100vh - 60px);
+}

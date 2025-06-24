@@ -2,7 +2,6 @@ html,
 body,
 #root {
   min-height: 100vh;
-  height: 100vh;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -10,9 +9,8 @@ body,
 }
 
 .main-container {
-  min-height: 100vh;
-  height: 100vh;
-  width: 100vw;
+  min-height: calc(100vh - 60px);
+  width: 100%;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
   display: flex;
@@ -21,103 +19,7 @@ body,
   justify-content: center;
   overflow-x: hidden;
   box-sizing: border-box;
-}
-
-.header {
-  width: 100%;
-  background: linear-gradient(90deg, #1976d2 60%, #42a5f5 100%);
-  color: #fff;
-  padding: 36px 0 20px 0;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.13);
-  border-bottom-left-radius: 32px;
-  border-bottom-right-radius: 32px;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.header h1 {
-  margin: 0 0 8px 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
-.logo-title {
-  margin: 0 0 12px 0;
-  font-size: 2.7rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  text-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
-}
-
-.icon-heart {
-  font-size: 2.3rem;
-  vertical-align: middle;
-  filter: drop-shadow(0 0 6px #fff6);
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-list li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.18rem;
-  font-weight: 700;
-  padding: 10px 22px;
-  border-radius: 10px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
-}
-
-.nav-list li a:hover {
-  background: #fff;
-  color: #1976d2;
-  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.13);
+  padding: 20px;
 }
 
 .welcome-section {

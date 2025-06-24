@@ -6,20 +6,6 @@ import './App.css';
 function App() {
   return (
     <div className="main-container">
-      <header className="header gradient-bg">
-        <Typography variant="h3" className="logo-title">
-          <span className="icon-heart">❤️</span> Sistema de Doações
-        </Typography>        <nav>
-          <ul className="nav-list">
-            <li><Link to="/doacoes">Doações</Link></li>
-            <li><Link to="/campanhas">Campanhas</Link></li>
-            <li><Link to="/organizacoes">Organizações</Link></li>
-            <li><Link to="/dashboard">Painel do Usuário</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Cadastro</Link></li>
-          </ul>
-        </nav>
-      </header>
       <main>
         <section className="welcome-section">
           <h2>Bem-vindo ao Sistema de Doações!</h2>
